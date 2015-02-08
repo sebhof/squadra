@@ -28,6 +28,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
             <form class="form-signin" action="j_security_check" method=post>
                 <h2 class="form-signin-heading">Welcome to Squadra</h2>
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span>
+                    Login failed. Please try again.
+                </div>
                 <label for="inputEmail" class="sr-only">Username</label>
                 <input name="j_username" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
                 <label for="inputPassword" class="sr-only">Password</label>

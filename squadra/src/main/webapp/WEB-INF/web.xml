@@ -33,6 +33,29 @@
     
     <security-constraint>
         <web-resource-collection>
+            <web-resource-name>css</web-resource-name>
+            <description></description>
+            <url-pattern>/css/*</url-pattern>
+        </web-resource-collection>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>fonts</web-resource-name>
+            <description></description>
+            <url-pattern>/fonts/*</url-pattern>
+        </web-resource-collection>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>js</web-resource-name>
+            <description></description>
+            <url-pattern>/js/*</url-pattern>
+        </web-resource-collection>
+    </security-constraint>
+    
+    
+    <security-constraint>
+        <web-resource-collection>
             <web-resource-name>Squadra</web-resource-name>
             <description></description>
             <url-pattern>/*</url-pattern>
@@ -52,7 +75,7 @@
         <realm-name>squadra-realm</realm-name>
         <form-login-config>
             <form-login-page>/login.html</form-login-page>
-            <form-error-page>/login.html</form-error-page>
+            <form-error-page>/login-error.html</form-error-page>
         </form-login-config>
     </login-config>
     
