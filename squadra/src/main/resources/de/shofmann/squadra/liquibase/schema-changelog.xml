@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="1" author="shofmann">
+        
+        <createTable tableName="application_user">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>                
+            </column>
+            <column name="password" type="varchar(255)">                
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+        <createTable tableName="application_config">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="admin_password" type="varchar(255)">                
+                <constraints nullable="false"/>
+            </column>
+            <column name="admin_password_changed" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+        <!--createTable tableName="user_role">
+            <column name="user_fk" type="int">
+                <constraints foreignKeyName="con_user_role_user_fk" referencedTableName="app_user" referencedColumnNames="id" nullable="false"/> 
+            </column>
+            <column name="role_fk" type="int">
+                <constraints foreignKeyName="con_user_role_role_fk" referencedTableName="role" referencedColumnNames="id" nullable="false"/> 
+            </column>
+        </createTable>        
+        <addUniqueConstraint tableName="user_role" columnNames="user_fk, role_fk"/-->
+
+        <createView viewName="user_role_view">
+            select username as "username", password as "password", 'USER' as "role" from application_user
+            union
+            select 'admin' as "username" , admin_password as "password", 'ADMIN' as "role" from application_config where id = 1
+        </createView>
+        
+        <rollback>
+            <dropView viewName="user_role_view"/>
+            <dropTable tableName="application_user"/>            
+            <dropTable tableName="application_config"/>            
+        </rollback>
+        
+    </changeSet>
+    
+</databaseChangeLog>
