@@ -23,6 +23,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * This class holds the application configuration
@@ -31,7 +33,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "application_config")
-public class ApplicationConfig implements Serializable {
+@XmlRootElement
+public class ApplicationConfiguration implements Serializable {
     
     private static final long serialVersionUID = 1L;
     
@@ -40,7 +43,7 @@ public class ApplicationConfig implements Serializable {
     @Column(name = "id")
     private Long id;
     
-    @Column(name = "username", nullable = false, length = 255)
+    @Column(name = "admin_password", nullable = false, length = 255)    
     private String adminPassword;
 
     @Column(name = "admin_password_changed", nullable = false)
@@ -69,6 +72,7 @@ public class ApplicationConfig implements Serializable {
      *
      * @return the value of adminPassword
      */
+    @XmlTransient
     public String getAdminPassword() {
         return adminPassword;
     }

@@ -40,7 +40,8 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(de.shofmann.squadra.service.UserFacadeREST.class);
+        resources.add(de.shofmann.squadra.service.ApplicationService.class);
+        resources.add(de.shofmann.squadra.service.UserSessionService.class);
     }
     
 }
